@@ -45,92 +45,193 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-    // Book search and autocomplete functionality
+    // // Book search and autocomplete functionality
+    // const searchInput = document.getElementById('search-input');
+    // const autocompleteResults = document.getElementById('autocomplete-results');
+    // const searchResults = document.getElementById('search-results');
+
+    // if (searchInput) {
+    //     searchInput.addEventListener('input', async () => {
+    //         const query = searchInput.value.trim();
+    //         if (query) {
+    //             try {
+    //                 const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5`);
+    //                 const data = await response.json();
+    //                 displayAutocompleteResults(data.items);
+    //             } catch (error) {
+    //                 console.error('Error fetching autocomplete data:', error);
+    //             }
+    //         } else {
+    //             autocompleteResults.innerHTML = '';
+    //         }
+    //     });
+
+    //     document.getElementById('search-form').addEventListener('submit', async (e) => {
+    //         e.preventDefault();
+    //         const query = searchInput.value.trim();
+    //         if (query) {
+    //             searchResults.innerHTML = '<p>Loading...</p>';
+    //             try {
+    //                 const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+    //                 const data = await response.json();
+    //                 displayResults(data.items);
+    //             } catch (error) {
+    //                 searchResults.innerHTML = '<p>Failed to fetch data</p>';
+    //                 console.error('Error fetching data:', error);
+    //             }
+    //         }
+    //     });
+
+    //     function displayAutocompleteResults(items) {
+    //         if (items && items.length > 0) {
+    //             const autocompleteSuggestions = items.map(item => `<div class="autocomplete-item" data-title="${item.volumeInfo.title}">${item.volumeInfo.title}</div>`);
+    //             autocompleteResults.innerHTML = autocompleteSuggestions.join('');
+    //             addAutocompleteItemClickListeners();
+    //         } else {
+    //             autocompleteResults.innerHTML = '';
+    //         }
+    //     }
+
+    //     function addAutocompleteItemClickListeners() {
+    //         const autocompleteItems = document.querySelectorAll('.autocomplete-item');
+    //         autocompleteItems.forEach(item => {
+    //             item.addEventListener('click', async (e) => {
+    //                 const title = e.target.getAttribute('data-title');
+    //                 searchInput.value = title;
+    //                 autocompleteResults.innerHTML = '';
+    //                 searchResults.innerHTML = '<p>Loading...</p>';
+    //                 try {
+    //                     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}`);
+    //                     const data = await response.json();
+    //                     displayResults(data.items);
+    //                 } catch (error) {
+    //                     searchResults.innerHTML = '<p>Failed to fetch data</p>';
+    //                     console.error('Error fetching data:', error);
+    //                 }
+    //             });
+    //         });
+    //     }
+
+    //     function displayResults(books) {
+    //         searchResults.innerHTML = '';
+    //         if (books && books.length > 0) {
+    //             books.forEach(book => {
+    //                 const bookInfo = book.volumeInfo;
+    //                 const bookItem = document.createElement('div');
+    //                 bookItem.classList.add('book-item');
+    //                 bookItem.innerHTML = `
+    //                     <h3>${bookInfo.title}</h3>
+    //                     <p>${bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown Author'}</p>
+    //                     <p>${bookInfo.publisher ? bookInfo.publisher : 'Unknown Publisher'}</p>
+    //                 `;
+    //                 searchResults.appendChild(bookItem);
+    //             });
+    //         } else {
+    //             searchResults.innerHTML = '<p>No results found</p>';
+    //         }
+    //     }
+    // }
+
+
     const searchInput = document.getElementById('search-input');
-    const autocompleteResults = document.getElementById('autocomplete-results');
-    const searchResults = document.getElementById('search-results');
+const autocompleteResults = document.getElementById('autocomplete-results');
+const searchResults = document.getElementById('search-results');
+const bookDetails = document.getElementById('book-details');
 
-    if (searchInput) {
-        searchInput.addEventListener('input', async () => {
-            const query = searchInput.value.trim();
-            if (query) {
-                try {
-                    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5`);
-                    const data = await response.json();
-                    displayAutocompleteResults(data.items);
-                } catch (error) {
-                    console.error('Error fetching autocomplete data:', error);
-                }
-            } else {
-                autocompleteResults.innerHTML = '';
+if (searchInput) {
+    searchInput.addEventListener('input', async () => {
+        const query = searchInput.value.trim();
+        if (query) {
+            try {
+                const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5&key=AIzaSyCpPxFhl95U1xlrFd2kw7At6WrtnaqHxEY`);
+                const data = await response.json();
+                displayAutocompleteResults(data.items);
+            } catch (error) {
+                console.error('Error fetching autocomplete data:', error);
             }
-        });
+        } else {
+            autocompleteResults.innerHTML = '';
+        }
+    });
 
-        document.getElementById('search-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const query = searchInput.value.trim();
-            if (query) {
-                searchResults.innerHTML = '<p>Loading...</p>';
-                try {
-                    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
-                    const data = await response.json();
-                    displayResults(data.items);
-                } catch (error) {
-                    searchResults.innerHTML = '<p>Failed to fetch data</p>';
-                    console.error('Error fetching data:', error);
-                }
-            }
-        });
-
-        function displayAutocompleteResults(items) {
-            if (items && items.length > 0) {
-                const autocompleteSuggestions = items.map(item => `<div class="autocomplete-item" data-title="${item.volumeInfo.title}">${item.volumeInfo.title}</div>`);
-                autocompleteResults.innerHTML = autocompleteSuggestions.join('');
-                addAutocompleteItemClickListeners();
-            } else {
-                autocompleteResults.innerHTML = '';
+    document.getElementById('search-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        if (query) {
+            searchResults.innerHTML = '<p>Loading...</p>';
+            try {
+                const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyCpPxFhl95U1xlrFd2kw7At6WrtnaqHxEY`);
+                const data = await response.json();
+                displayResults(data.items);
+            } catch (error) {
+                searchResults.innerHTML = '<p>Failed to fetch data</p>';
+                console.error('Error fetching data:', error);
             }
         }
+    });
 
-        function addAutocompleteItemClickListeners() {
-            const autocompleteItems = document.querySelectorAll('.autocomplete-item');
-            autocompleteItems.forEach(item => {
-                item.addEventListener('click', async (e) => {
-                    const title = e.target.getAttribute('data-title');
-                    searchInput.value = title;
-                    autocompleteResults.innerHTML = '';
-                    searchResults.innerHTML = '<p>Loading...</p>';
-                    try {
-                        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}`);
-                        const data = await response.json();
-                        displayResults(data.items);
-                    } catch (error) {
-                        searchResults.innerHTML = '<p>Failed to fetch data</p>';
-                        console.error('Error fetching data:', error);
-                    }
-                });
-            });
-        }
-
-        function displayResults(books) {
-            searchResults.innerHTML = '';
-            if (books && books.length > 0) {
-                books.forEach(book => {
-                    const bookInfo = book.volumeInfo;
-                    const bookItem = document.createElement('div');
-                    bookItem.classList.add('book-item');
-                    bookItem.innerHTML = `
-                        <h3>${bookInfo.title}</h3>
-                        <p>${bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown Author'}</p>
-                        <p>${bookInfo.publisher ? bookInfo.publisher : 'Unknown Publisher'}</p>
-                    `;
-                    searchResults.appendChild(bookItem);
-                });
-            } else {
-                searchResults.innerHTML = '<p>No results found</p>';
-            }
+    function displayAutocompleteResults(items) {
+        if (items && items.length > 0) {
+            const autocompleteSuggestions = items.map(item => `<div class="autocomplete-item" data-id="${item.id}">${item.volumeInfo.title}</div>`);
+            autocompleteResults.innerHTML = autocompleteSuggestions.join('');
+            addAutocompleteItemClickListeners();
+        } else {
+            autocompleteResults.innerHTML = '';
         }
     }
+
+    function addAutocompleteItemClickListeners() {
+        const autocompleteItems = document.querySelectorAll('.autocomplete-item');
+        autocompleteItems.forEach(item => {
+            item.addEventListener('click', async (e) => {
+                const bookId = e.target.getAttribute('data-id');
+                searchInput.value = e.target.textContent;
+                autocompleteResults.innerHTML = '';
+                searchResults.innerHTML = '';
+                try {
+                    const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}?key=AIzaSyCpPxFhl95U1xlrFd2kw7At6WrtnaqHxEY`);
+                    const book = await response.json();
+                    displayBookDetails(book);
+                } catch (error) {
+                    bookDetails.innerHTML = '<p>Failed to fetch book details</p>';
+                    console.error('Error fetching book details:', error);
+                }
+            });
+        });
+    }
+
+    function displayResults(books) {
+        searchResults.innerHTML = '';
+        if (books && books.length > 0) {
+            books.forEach(book => {
+                const bookInfo = book.volumeInfo;
+                const bookItem = document.createElement('div');
+                bookItem.classList.add('book-item');
+                bookItem.innerHTML = `
+                    <h3>${bookInfo.title}</h3>
+                    <p>${bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown Author'}</p>
+                    <p>${bookInfo.publisher ? bookInfo.publisher : 'Unknown Publisher'}</p>
+                `;
+                searchResults.appendChild(bookItem);
+            });
+        } else {
+            searchResults.innerHTML = '<p>No results found</p>';
+        }
+    }
+
+    function displayBookDetails(book) {
+        const bookInfo = book.volumeInfo;
+        bookDetails.innerHTML = `
+            <h2>${bookInfo.title}</h2>
+            <p><strong>Authors:</strong> ${bookInfo.authors ? bookInfo.authors.join(', ') : 'Unknown Author'}</p>
+            <p><strong>Publisher:</strong> ${bookInfo.publisher ? bookInfo.publisher : 'Unknown Publisher'}</p>
+            <p><strong>Published Date:</strong> ${bookInfo.publishedDate ? bookInfo.publishedDate : 'Unknown Date'}</p>
+            <p><strong>Description:</strong> ${bookInfo.description ? bookInfo.description : 'No description available'}</p>
+            <img src="${bookInfo.imageLinks ? bookInfo.imageLinks.thumbnail : ''}" alt="${bookInfo.title} cover image">
+        `;
+    }
+}
+
 
     document.addEventListener("DOMContentLoaded", function () {
         // Toggle password visibility
@@ -226,23 +327,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(displayRandomQuote, 10000);
     });
 
-
-    // function toggleDropdown() {
-    //     document.getElementById("dropdown-content").classList.toggle("show");
-    // }
-    
-    // // Close the dropdown if the user clicks outside of it
-    // window.onclick = function(event) {
-    //     if (!event.target.matches('.dropbtn')) {
-    //         var dropdowns = document.getElementsByClassName("dropdown-content");
-    //         for (var i = 0; i < dropdowns.length; i++) {
-    //             var openDropdown = dropdowns[i];
-    //             if (openDropdown.classList.contains('show')) {
-    //                 openDropdown.classList.remove('show');
-    //             }
-    //         }
-    //     }
-    // }
     
     
     
