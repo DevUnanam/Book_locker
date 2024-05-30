@@ -508,7 +508,7 @@ section{
     height: 40px;
     line-height: 40px;
     border-radius: 50px;
-    background-color: $e8f6ea;
+    background-color: #e8f6ea;
     font-weight: 500;
     color: #088178;
     border: 1px solid #cce7d0;
@@ -1144,6 +1144,150 @@ section{
     color: #666;
     margin-bottom: 10px;
 }
+
+#quote-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    
+    border: 1px solid #070000;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 300px;
+}
+
+#quote-text {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+#quote-author {
+    font-size: 0.9em;
+    color: #555;
+}
+
+ul {
+    list-style: none;
+}
+
+.wrapper {
+    height: 50px;
+    width: 100%;
+    margin: 0 auto;
+    background: #219150;
+}
+
+.wrapper ul li {
+    float: left;
+    position: relative;
+}
+
+.wrapper ul li a {
+    padding: 16px 65px;
+    display: block;
+    transition: .8s;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.wrapper > ul > li > a {
+    border-right: 1px solid #fff;
+}
+
+.wrapper > ul > li:last-child > a {
+    border-right: none;
+}
+
+.wrapper > ul > li:hover > a {
+    background: #219150;
+}
+
+.wrapper ul li a:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 0;
+    background: #219150;
+    transition: .7s;
+}
+
+.wrapper ul li a:before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 4px;
+    width: 0;
+    background: #219150;
+    transition: .7s;
+}
+
+.wrapper ul li a:hover:before,
+.wrapper ul li a:hover:after {
+    width: 100%;
+}
+
+.wrapper ul li ul {
+    position: absolute;
+    background: #219150;
+    width: 208px;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+    margin-top: -25px;
+}
+
+.wrapper ul li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+}
+
+.wrapper ul li ul li {
+    width: 100%;
+}
+
+.wrapper ul li ul li a {
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 15px;
+    padding-bottom: 15px;
+    padding-left: 40px;
+}
+
+.wrapper ul li ul li ul {
+    left: 100%;
+    top: 0;
+}
+
+/* Additional styles to ensure it mimics Codebase B's dropdown behavior */
+.drop_down {
+    display: none;
+}
+
+.wrapper ul li:hover .drop_down {
+    display: block;
+}
+
+.fas.fa-arrow-down {
+    background-color: transparent;
+    color: #fff;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+.fas.fa-arrow-down:hover,
+.fas.fa-arrow-down:focus {
+    color: #27ae60;
+}
+
 
 
 

@@ -202,6 +202,52 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('signup-form').addEventListener('submit', validateSignUp);
         document.getElementById('passwordRetrievalForm').addEventListener('submit', handlePasswordRetrieval);
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const quotes = [
+            { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+            { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+            { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+            { text: "The best way to predict the future is to create it.", author: "Peter Drucker" }
+        ];
+    
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            document.getElementById('quote-text').textContent = `"${randomQuote.text}"`;
+            document.getElementById('quote-author').textContent = `- ${randomQuote.author}`;
+        }
+    
+        // Display a random quote when the page loads
+        displayRandomQuote();
+    
+        // Optional: Refresh the quote every 10 seconds
+        setInterval(displayRandomQuote, 10000);
+    });
+
+
+    // function toggleDropdown() {
+    //     document.getElementById("dropdown-content").classList.toggle("show");
+    // }
+    
+    // // Close the dropdown if the user clicks outside of it
+    // window.onclick = function(event) {
+    //     if (!event.target.matches('.dropbtn')) {
+    //         var dropdowns = document.getElementsByClassName("dropdown-content");
+    //         for (var i = 0; i < dropdowns.length; i++) {
+    //             var openDropdown = dropdowns[i];
+    //             if (openDropdown.classList.contains('show')) {
+    //                 openDropdown.classList.remove('show');
+    //             }
+    //         }
+    //     }
+    // }
+    
+    
+    
+    
+    
     
 
 
