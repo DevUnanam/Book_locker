@@ -323,10 +323,10 @@ if (searchInput) {
         // Display a random quote when the page loads
         displayRandomQuote();
     
-        // Optional: Refresh the quote every 10 seconds
-        setInterval(displayRandomQuote, 10000);
+        // Refresh the quote every 5 seconds
+        setInterval(displayRandomQuote, 5000);
     });
-
+    
     
     
     

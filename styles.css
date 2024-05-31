@@ -1154,6 +1154,7 @@ section{
     border-radius: 5px;
     text-align: center;
     max-width: 300px;
+    
 }
 
 #quote-text {
@@ -1286,6 +1287,30 @@ ul {
 .fas.fa-arrow-down:hover,
 .fas.fa-arrow-down:focus {
     color: #27ae60;
+}
+
+.background-cover {
+    background-image: url('images/BL.png');
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    width: 100%; /* Adjust width as needed */
+    height: 100vh; /* Set height to full viewport height for a full-page cover effect */
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* H
+}
+
+.content-box {
+    position: relative;
+    z-index: 2; /* Ensure content is above the background image */
+    padding: 20px; /* Add some padding */
+    background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background to the text box */
+}
+
+.content {
+    position: relative;
+    z-index: 3; /* Ensure text is above the semi-transparent background */
 }
 
 
